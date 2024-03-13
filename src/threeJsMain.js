@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { planeMesh, grid } from './services/Grid.js'
 
 let canvas;
 let render;
@@ -8,8 +9,8 @@ let orbit;
 
 const scene = new THREE.Scene();
 
-const renderW = 900;
-const renderH = 720;
+export const renderW = 960;
+export const renderH = 720;
 
 window.onload = function ()
 {
@@ -35,10 +36,8 @@ window.onload = function ()
 // document.body.appendChild(render.canvas);
 
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+scene.add(planeMesh)
+scene.add(grid)
 
 export function animate()
 {
