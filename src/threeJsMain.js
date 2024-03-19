@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { planeMesh, grid, highlightMesh } from './services/Grid.js'
-import { mountRaycaster } from './services/Raycaster.js';
+import { mountRaycaster, mountSelector } from './services/Raycaster.js';
 
 let canvas;
 let render;
@@ -29,6 +29,7 @@ window.onload = function ()
     camera.position.set(10, 15, -22);
 
     mountRaycaster(scene, camera);
+    mountSelector(scene);
 
     orbit.update();
 }
