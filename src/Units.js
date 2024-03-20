@@ -31,3 +31,12 @@ class UnitStats
             this.attackPower = attackPower
     }
 }
+
+function appendMeshDetails(numberInArray, name, health, defense, attackPower)
+{
+    Object.values(Units[numberInArray])[0].userData = new UnitStats(name, health, defense, attackPower);
+}
+
+appendMeshDetails(0, 'Pyramid', 25, 5, 5);
+
+appendMeshDetails(1, 'Sphere', 30, 3, 6);

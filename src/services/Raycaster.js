@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { highlightMesh } from './Grid.js';
+import { ref } from 'vue';
 
 const mousePosition = new THREE.Vector2();
 const raycaster = new THREE.Raycaster();
@@ -11,6 +12,8 @@ export class selectorClass
 {
     selectedUnit = null;
 }
+
+export let gridUnit = ref();
 
 // TODO The raycaster's positioning in a bit off due the custom canvas size; needs fixed.
 
@@ -77,7 +80,9 @@ export function mountSelector(scene)
             });
         } else
         {
-            return;
+            console.log(objectExist.userData);
+            gridUnit.value = objectExist.userData;
+            console.log(gridUnit.value)
         }
     })
 }

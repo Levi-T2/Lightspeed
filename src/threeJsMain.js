@@ -10,7 +10,7 @@ let orbit;
 
 const scene = new THREE.Scene();
 
-export const renderW = 960;
+export const renderW = 1280;
 export const renderH = 720;
 
 
