@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { planeMesh, grid, highlightMesh } from './services/Grid.js'
 import { mountRaycaster, mountSelector } from './services/Raycaster.js';
+import { playerGridTwo, playerGridOne, playerPlane, playerUnit } from './services/PlayerGrid.js';
 
 let canvas;
 let render;
@@ -10,8 +11,8 @@ let orbit;
 
 const scene = new THREE.Scene();
 
-export const renderW = 1280;
-export const renderH = 720;
+export const renderW = window.innerWidth / 1.25;
+export const renderH = window.innerHeight / 1.25;
 
 
 window.onload = function ()
@@ -41,9 +42,21 @@ window.onload = function ()
 // document.body.appendChild(render.canvas);
 
 
-scene.add(planeMesh)
-scene.add(grid)
-scene.add(highlightMesh)
+scene.add(planeMesh);
+scene.add(grid);
+scene.add(highlightMesh);
+
+scene.add(playerPlane);
+playerPlane.position.set(-0.5, 1.25, 16);
+
+scene.add(playerGridOne);
+playerGridOne.position.set(-0.5, 1.25, 17);
+scene.add(playerGridTwo);
+playerGridTwo.position.set(-0.5, 1.25, 15);
+
+scene.add(playerUnit);
+playerUnit.position.set(-0.5, 2, 16);
+
 
 export function animate()
 {

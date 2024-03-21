@@ -21,8 +21,8 @@ export function mountRaycaster(scene, camera)
 {
     window.addEventListener('mousemove', function (e) 
     {
-        mousePosition.x = (e.clientX / window.innerWidth) * 2 - 1;
-        mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        mousePosition.x = (e.clientX / (window.innerWidth)) * 2 - 1;
+        mousePosition.y = -(e.clientY / (window.innerHeight)) * 2 + 1;
         raycaster.setFromCamera(mousePosition, camera)
         intersects = raycaster.intersectObjects(scene.children);
 
