@@ -81,7 +81,7 @@ export function mountSelector(scene)
         } else
         {
             console.log(objectExist.userData);
-            gridUnit.value = objectExist.userData;
+            gridUnit.value = objectExist;
             console.log(gridUnit.value)
         }
     })

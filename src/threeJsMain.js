@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { planeMesh, grid, highlightMesh } from './services/Grid.js'
 import { mountRaycaster, mountSelector } from './services/Raycaster.js';
 import { playerGridTwo, playerGridOne, playerPlane, playerUnit } from './services/PlayerGrid.js';
+import { projectileMesh } from './services/Action.js';
 
 let canvas;
 let render;
@@ -57,9 +58,15 @@ playerGridTwo.position.set(-0.5, 1.25, 15);
 scene.add(playerUnit);
 playerUnit.position.set(-0.5, 2, 16);
 
+scene.add(projectileMesh)
 
 export function animate()
 {
+    // projectiles.forEach(function (projectile)
+    // {
+    //     projectile.position.x = 20
+    // })
+
     requestAnimationFrame(animate);
     render.render(scene, camera);
 }

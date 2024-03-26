@@ -6,10 +6,12 @@
         </div>
         <div class="offcanvas-body">
             <div v-if="unitDetails">
-                <h3>{{ unitDetails.name }}</h3>
-                <p>{{ unitDetails.defense }}</p>
-                <p>{{ unitDetails.health }}</p>
-                <p>{{ unitDetails.attackPower }}</p>
+                <h3>{{ unitDetails.userData.name }}</h3>
+                <p>{{ unitDetails.userData.defense }}</p>
+                <p>{{ unitDetails.userData.health }}</p>
+                <p>{{ unitDetails.userData.attackPower }}</p>
+                <button @click="shootProjectile(unitDetails.position)"
+                    class="btn btn-warning rounded-pill">Shoot</button>
             </div>
         </div>
     </div>
@@ -18,8 +20,9 @@
 
 <script setup>
 import { gridUnit } from '@/services/Raycaster.js'
+import { shootProjectile } from '@/services/Action';
 
-const unitDetails = gridUnit
+const unitDetails = gridUnit;
 
 </script>
 
