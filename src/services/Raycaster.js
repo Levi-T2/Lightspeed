@@ -6,7 +6,7 @@ const mousePosition = new THREE.Vector2();
 const raycaster = new THREE.Raycaster();
 let intersects;
 
-let objects = [];
+export let objects = [];
 
 export class selectorClass
 {

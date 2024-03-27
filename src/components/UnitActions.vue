@@ -10,8 +10,7 @@
                 <p>{{ unitDetails.userData.defense }}</p>
                 <p>{{ unitDetails.userData.health }}</p>
                 <p>{{ unitDetails.userData.attackPower }}</p>
-                <button @click="shootProjectile(unitDetails.position)"
-                    class="btn btn-warning rounded-pill">Shoot</button>
+                <button @click="shootProjectile(unitDetails)" class="btn btn-warning rounded-pill">Shoot</button>
             </div>
         </div>
     </div>
