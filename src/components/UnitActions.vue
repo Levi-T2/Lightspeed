@@ -26,4 +26,10 @@ const unitDetails = gridUnit;
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.offcanvas {
+    margin: 3rem;
+    margin-bottom: 5rem;
+    border-radius: 3.5px;
+}
+</style>

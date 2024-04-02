@@ -1,13 +1,17 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { planeMesh, grid, highlightMesh } from './services/Grid.js'
-import { mountRaycaster, mountSelector } from './services/Raycaster.js';
+import { dismountRaycaster, mountRaycaster, mountSelector, raycasterHandler } from './services/Raycaster.js';
 import { playerGridTwo, playerGridOne, playerPlane, playerUnit } from './services/PlayerGrid.js';
 
 let canvas;
 let render;
 let camera;
 let orbit;
+
+
+let boool1 = false;
+let boool2 = true;
 
 export const scene = new THREE.Scene();
 
@@ -29,8 +33,13 @@ window.onload = function ()
 
     camera.position.set(10, 15, -22);
 
-    mountRaycaster(scene, camera);
-    mountSelector(scene);
+    const raycasterRef = (event) => raycasterHandler(event, scene, camera);
+
+    // NOTE THIS ACTUALLY WORKS TO REMOVE THE RAYCASTER... but must be moved to the offcanvas button 😥
+
+    mountRaycaster(boool2, raycasterRef);
+    mountRaycaster(boool1, raycasterRef);
+    // mountSelector(scene);
 
     orbit.update();
 }
@@ -46,6 +55,10 @@ export function addToScene(mesh)
     scene.add(mesh);
 }
 
+export function removeEventL()
+{
+    dismountRaycaster(scene, camera);
+}
 
 scene.add(planeMesh);
 scene.add(grid);

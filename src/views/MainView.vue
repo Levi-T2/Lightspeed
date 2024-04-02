@@ -29,7 +29,6 @@ import { selectorClass } from '@/services/Raycaster.js'
 import { Units } from '@/Units.js';
 import { computed } from 'vue';
 import { Offcanvas } from 'bootstrap'
-
 // onMounted(() =>
 // {
 //   animate();
