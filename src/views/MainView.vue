@@ -24,11 +24,12 @@
 </template>
 
 <script setup>
-import { animate } from '../threeJsMain.js'
+import { animate, raycasterRef } from '../threeJsMain.js'
 import { selectorClass } from '@/services/Raycaster.js'
 import { Units } from '@/Units.js';
 import { computed } from 'vue';
 import { Offcanvas } from 'bootstrap'
+import { mountRaycaster } from '@/services/Raycaster.js';
 // onMounted(() =>
 // {
 //   animate();
@@ -41,6 +42,9 @@ function unitSelect(unit)
 
 function toggleOffcanvas()
 {
+  let paused = true;
+  mountRaycaster(paused, raycasterRef);
+
   const offcanvasElem = document.getElementById("offcanvasRight")
   const offcanvas = new Offcanvas(offcanvasElem);
 

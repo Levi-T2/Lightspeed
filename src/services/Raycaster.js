@@ -77,10 +77,10 @@ export function raycasterHandler(e, scene, camera)
 
 }
 
-export function mountRaycaster(testVar, raycasterRef)
+export function mountRaycaster(paused, raycasterRef)
 {
 
-    if (testVar == true)
+    if (paused == false)
     {
         window.addEventListener('mousemove', raycasterRef);
         console.log("Raycaster mounted from Raycaster.js");
@@ -89,12 +89,6 @@ export function mountRaycaster(testVar, raycasterRef)
         window.removeEventListener('mousemove', raycasterRef);
         console.log("Raycaster Removed from Raycaster.js");
     }
-}
-
-export function dismountRaycaster(scene, camera)
-{
-    const raycasterRef = (event) => raycasterHandler(event, scene, camera);
-
 }
 
 export function mountSelector(scene)
