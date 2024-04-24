@@ -15,38 +15,10 @@ export class selectorClass
 
 export let gridUnit = ref();
 
-// export function toggleRaycaster()
-// {
-//     const offCanvas = document.getElementById('offcanvasRight');
-
-//     if (offCanvas.classList.contains('active'))
-//     {
-//         offCanvas.classList.remove('active')
-
-//     } else
-//     {
-//         offCanvas.classList.add('active')
-
-
-//     }
-
-//     // if (offcanvas.classList.contains('active')) {
-//     //     offcanvas.classList.remove('active');
-//     //     // Resume event listener when offcanvas is closed
-//     //     toggleEventListener(false);
-//     // } else {
-//     //     offcanvas.classList.add('active');
-//     //     // Pause event listener when offcanvas is opened
-//     //     toggleEventListener(true);
-//     // }
-// }
-
-
 // TODO The raycaster's positioning in a bit off due the custom canvas size; needs fixed.
 
 export function raycasterHandler(e, scene, camera)
 {
-
     mousePosition.x = (e.clientX / (window.innerWidth)) * 2 - 1;
     mousePosition.y = -(e.clientY / (window.innerHeight)) * 2 + 1;
     raycaster.setFromCamera(mousePosition, camera)
@@ -87,39 +59,83 @@ export function mountRaycaster(paused, raycasterRef)
     } else
     {
         window.removeEventListener('mousemove', raycasterRef);
-        console.log("Raycaster Removed from Raycaster.js");
+        console.log("Raycaster removed from Raycaster.js");
     }
 }
 
-export function mountSelector(scene)
+export function selectorHandler(scene)
 {
-    window.addEventListener('mousedown', function ()
+    const objectExist = objects.find(function (object)
     {
-        const objectExist = objects.find(function (object)
-        {
-            return (object.position.x === highlightMesh.position.x) &
-                (object.position.z === highlightMesh.position.z)
-        });
+        return (object.position.x === highlightMesh.position.x) &
+            (object.position.z === highlightMesh.position.z)
+    });
 
-        if (!objectExist)
+    if (!objectExist)
+    {
+        intersects.forEach(function (intersect)
         {
-            intersects.forEach(function (intersect)
+            if (intersect.object.name === 'ground')
             {
-                if (intersect.object.name === 'ground')
-                {
-                    const meshClone = selectorClass.selectedUnit.clone();
-                    // console.log(meshClone);
-                    meshClone.position.copy(highlightMesh.position);
-                    scene.add(meshClone);
-                    objects.push(meshClone);
-                    highlightMesh.material.color.setHex(0xFF0000);
-                }
-            });
-        } else
-        {
-            console.log(objectExist.userData);
-            gridUnit.value = objectExist;
-            console.log(gridUnit.value)
-        }
-    })
+                const meshClone = selectorClass.selectedUnit.clone();
+                // console.log(meshClone);
+                meshClone.position.copy(highlightMesh.position);
+                scene.add(meshClone);
+                objects.push(meshClone);
+                highlightMesh.material.color.setHex(0xFF0000);
+            }
+        });
+    } else
+    {
+        console.log(objectExist.userData);
+        gridUnit.value = objectExist;
+        console.log(gridUnit.value);
+    }
+
 }
+
+export function mountSelector(paused, selectorRef)
+{
+    if (paused == false)
+    {
+        window.addEventListener('mousedown', selectorRef);
+        console.log("Selector mounted from Raycaster.js");
+    } else
+    {
+        window.removeEventListener('mousedown', selectorRef);
+        console.log("Selector removed from Raycaster.js");
+    }
+}
+
+// export function mountSelector(scene)
+// {
+//     window.addEventListener('mousedown', function ()
+//     {
+//         const objectExist = objects.find(function (object)
+//         {
+//             return (object.position.x === highlightMesh.position.x) &
+//                 (object.position.z === highlightMesh.position.z)
+//         });
+
+//         if (!objectExist)
+//         {
+//             intersects.forEach(function (intersect)
+//             {
+//                 if (intersect.object.name === 'ground')
+//                 {
+//                     const meshClone = selectorClass.selectedUnit.clone();
+//                     // console.log(meshClone);
+//                     meshClone.position.copy(highlightMesh.position);
+//                     scene.add(meshClone);
+//                     objects.push(meshClone);
+//                     highlightMesh.material.color.setHex(0xFF0000);
+//                 }
+//             });
+//         } else
+//         {
+//             console.log(objectExist.userData);
+//             gridUnit.value = objectExist;
+//             console.log(gridUnit.value)
+//         }
+//     })
+// }

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { planeMesh, grid, highlightMesh } from './services/Grid.js'
-import { mountRaycaster, mountSelector, raycasterHandler } from './services/Raycaster.js';
+import { mountRaycaster, mountSelector, raycasterHandler, selectorHandler } from './services/Raycaster.js';
 import { playerGridTwo, playerGridOne, playerPlane, playerUnit } from './services/PlayerGrid.js';
 
 let canvas;
@@ -10,6 +10,7 @@ let camera;
 let orbit;
 
 export let raycasterRef;
+export let selectorRef;
 
 
 let paused = false;
@@ -35,8 +36,10 @@ window.onload = function ()
     camera.position.set(10, 15, -22);
 
     raycasterRef = (event) => raycasterHandler(event, scene, camera);
+    selectorRef = () => selectorHandler(scene);
 
     mountRaycaster(paused, raycasterRef);
+    mountSelector(paused, selectorRef);
     // NOTE This needs to be reworked to be more like the raycaster so it can too be removed.
     // mountSelector(scene); 
 

@@ -20,9 +20,9 @@
 
 
 <script setup>
-import { gridUnit, mountRaycaster } from '@/services/Raycaster.js'
+import { gridUnit, mountRaycaster, mountSelector } from '@/services/Raycaster.js'
 import { shootProjectile } from '@/services/Action';
-import { raycasterRef } from '@/threeJsMain';
+import { raycasterRef, selectorRef } from '@/threeJsMain';
 
 const unitDetails = gridUnit;
 
@@ -30,6 +30,7 @@ function remountRaycaster()
 {
     let paused = false;
     mountRaycaster(paused, raycasterRef);
+    mountSelector(paused, selectorRef);
 }
 
 </script>

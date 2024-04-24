@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import { animate, raycasterRef } from '../threeJsMain.js'
-import { selectorClass } from '@/services/Raycaster.js'
+import { animate, raycasterRef, selectorRef } from '../threeJsMain.js'
+import { mountSelector, selectorClass } from '@/services/Raycaster.js'
 import { Units } from '@/Units.js';
 import { computed } from 'vue';
 import { Offcanvas } from 'bootstrap'
@@ -44,6 +44,7 @@ function toggleOffcanvas()
 {
   let paused = true;
   mountRaycaster(paused, raycasterRef);
+  mountSelector(paused, selectorRef);
 
   const offcanvasElem = document.getElementById("offcanvasRight")
   const offcanvas = new Offcanvas(offcanvasElem);
